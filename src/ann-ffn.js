@@ -1,9 +1,9 @@
 /* ann-ffn = artificial feed forward neural network 
 
      takes input matrix, 1x2
-     passes through 3 layers, 
-     yoe
+     passes through 3 layers
 */
+
 let { sumColumn, matrix, newMatrix } = require('./helpers');
 module.exports = { main }
 function main(inputMatrix = null) {
@@ -28,13 +28,20 @@ function main(inputMatrix = null) {
             [0.45, .55]
         ])
     ];
+    let biases = [
+        matrix([[3, 4, 1, 1]]),
+        matrix([[0.3, 6, 1]]),
+        matrix([[0.3, 4]])
+    ];
     // let S = [0.25, 0.5, 0.75, 1.0];// random 1x4
     let lastLayerMatrix = in1;
+    let k = 0;
     for (let wLayer of weightLayers) {
+        let biasMtrx = biases[k++];
         // let nextLayerValues = newMatrix(lastLayerMatrix.rows, wLayer.columns);
         let nextLayerValuesRow1 = [];
         for (let i = 0; i < wLayer.columns; i++) {
-            nextLayerValuesRow1[i] = sumColumn(lastLayerMatrix, wLayer, i);
+            nextLayerValuesRow1[i] = sumColumn(lastLayerMatrix, wLayer, i) + biasMtrx[0][i];
         }
         lastLayerMatrix = matrix([nextLayerValuesRow1]);
     }

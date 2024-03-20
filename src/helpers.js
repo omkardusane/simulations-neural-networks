@@ -11,9 +11,9 @@ function sumColumn(activationLayer, weightsMatrix, columnIdx) {
         let cell = weightsMatrix[i][columnIdx];
         let avCarrierValue = activationLayer.get(0, i);
         x += cell * avCarrierValue;
-        console.log({ cell, avCarrierValue, x });
+        // console.log({ cell, avCarrierValue, x });
     }
-    console.log('---', { x });
+    console.log('sum = ', { x });
     return x;
 }
 
